@@ -2,7 +2,7 @@
 
 import argparse
 
-from parsing import parse_gamedays
+from parsing import load_season
 
 
 def main():
@@ -13,8 +13,8 @@ def main():
     with open(args.file, 'r') as input_file:
         lines = [l.strip() for l in input_file.readlines()]
 
-    gamedays = parse_gamedays(lines)
-    print(gamedays)
+    season = load_season(lines)
+    print(season)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,11 @@
 class RatedTeam(object):
-    def __init__(self, team):
-        self.team = team
+    def __init__(self, name):
+        self.name = name
         self.rating = -1
         self.points = 0
 
     def __str__(self):
-        return '%s(%d, %d)' % (self.team, self.rating, self.points)
+        return '%s(%d, %d)' % (self.name, self.rating, self.points)
 
     def __repr__(self):
         return self.__str__()
@@ -47,19 +47,22 @@ class DumbRatingEngine(RatingEngine):
 
 class GameSimulator(object):
     def __init__(self, season, engine):
-        self.season = season
-        self.teams = dict((t, RatedTeam(t)) for t in season.teams())
-        self.engine = engine
-        self.engine.initialize(self.teams.values())
+        self._season = season
+        self._teams = dict((t, RatedTeam(t)) for t in season.teams())
+        self._engine = engine
+        self._engine.initialize(self._teams.values())
 
     def simulate(self):
-        for gameday in self.season.gamedays:
+        for gameday in self._season.gamedays:
             self._simulate_gameday(gameday)
 
     def _simulate_gameday(self, gameday):
         for game in gameday.games:
-            self.engine.update(self.teams[game.team_1],
-                               self.teams[game.team_2], game)
+            self._engine.update(self._teams[game.team_1],
+                                self._teams[game.team_2], game)
 
     def get_team(self, name):
-        return self.teams[name]
+        return self._teams[name]
+
+    def teams(self):
+        return self._teams.values()

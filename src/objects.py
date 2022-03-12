@@ -1,10 +1,15 @@
 class Team(object):
-    def __init__(self, name, rating):
+    def __init__(self, name):
         self.name = name
-        self.rating = rating
 
     def __str__(self):
-        return '%s@%s' % (self.name, self.rating)
+        return self.name
+
+    def __eq__(self, other):
+        return self.name == other.name
+
+    def __hash__(self):
+        return hash((self.name))
 
 
 class Game(object):
@@ -52,3 +57,10 @@ class Season(object):
 
     def add_gameday(self, gameday):
         self.gamedays.append(gameday)
+
+    def teams(self):
+        result = {}
+        for g in self.gamedays[0].games:
+            result[g.team_1] = Team(g.team_1)
+            result[g.team_2] = Team(g.team_2)
+        return result

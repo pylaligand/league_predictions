@@ -22,6 +22,16 @@ class Game(object):
     def played(self):
         return self.score_1 >= 0 and self.score_2 >= 0
 
+    def update_scores(self, other):
+        self.score_1 = other.score_1
+        self.score_2 = other.score_2
+
+    def __eq__(self, other):
+        return self.team_1 == other.team_1 and self.team_2 == other.team_2
+
+    def __hash__(self):
+        return hash((self.team_1, self.team_2))
+
     def __str__(self):
         if self.played():
             return '%s(%d) v %s(%d)' % (self.team_1, self.score_1, self.team_2,

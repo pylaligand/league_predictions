@@ -1,0 +1,26 @@
+{
+    "name": "Container for leahue predictions",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "features": {
+        "ghcr.io/devcontainers/features/python:latest": {}
+    },
+    "customizations": {
+        "vscode": {
+          "extensions": [
+            "ms-python.black-formatter",
+            "ms-python.isort",
+            "Postman.postman-for-vscode"
+          ],
+          "settings": {
+            "[python]": {
+              "editor.defaultFormatter": "ms-python.black-formatter",
+              "editor.formatOnSave": true,
+              "editor.codeActionsOnSave": {
+                  "source.organizeImports": "explicit"
+              }
+            },
+            "isort.args": ["--profile", "black"]
+          }
+        }
+      }
+}

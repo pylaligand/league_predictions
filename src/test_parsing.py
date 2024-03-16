@@ -13,57 +13,57 @@ class TestParsing(unittest.TestCase):
 
     def test_parse_one(self):
         data = [
-            'day1,,,',
-            'A,1,B,2',
-            'C,3,D,4',
-            'E,0,F,0',
+            "day1,,,",
+            "A,1,B,2",
+            "C,3,D,4",
+            "E,0,F,0",
         ]
         season = load_season(data, validate=False)
         self.assertEqual(len(season.gamedays), 1)
         self.assertEqual(len(season.gamedays[0].games), 3)
-        self.assertGame(season.gamedays[0].games[0], 'A', 1, 'B', 2)
-        self.assertGame(season.gamedays[0].games[1], 'C', 3, 'D', 4)
-        self.assertGame(season.gamedays[0].games[2], 'E', 0, 'F', 0)
+        self.assertGame(season.gamedays[0].games[0], "A", 1, "B", 2)
+        self.assertGame(season.gamedays[0].games[1], "C", 3, "D", 4)
+        self.assertGame(season.gamedays[0].games[2], "E", 0, "F", 0)
 
     def test_parse_two(self):
         data = [
-            'day1,,,',
-            'A,1,B,2',
-            'C,3,D,4',
-            'day2,,,',
-            'B,1,C,2',
-            'D,3,A,4',
+            "day1,,,",
+            "A,1,B,2",
+            "C,3,D,4",
+            "day2,,,",
+            "B,1,C,2",
+            "D,3,A,4",
         ]
         season = load_season(data, validate=False)
         self.assertEqual(len(season.gamedays), 2)
         self.assertEqual(len(season.gamedays[0].games), 2)
-        self.assertGame(season.gamedays[0].games[0], 'A', 1, 'B', 2)
-        self.assertGame(season.gamedays[0].games[1], 'C', 3, 'D', 4)
+        self.assertGame(season.gamedays[0].games[0], "A", 1, "B", 2)
+        self.assertGame(season.gamedays[0].games[1], "C", 3, "D", 4)
         self.assertEqual(len(season.gamedays[1].games), 2)
-        self.assertGame(season.gamedays[1].games[0], 'B', 1, 'C', 2)
-        self.assertGame(season.gamedays[1].games[1], 'D', 3, 'A', 4)
+        self.assertGame(season.gamedays[1].games[0], "B", 1, "C", 2)
+        self.assertGame(season.gamedays[1].games[1], "D", 3, "A", 4)
 
     def test_parse_comma(self):
         data = [
-            'day1,,,',
-            'A,1,B,2',
-            ',,,',
-            'day2,,,',
-            'B,1,A,1',
+            "day1,,,",
+            "A,1,B,2",
+            ",,,",
+            "day2,,,",
+            "B,1,A,1",
         ]
         season = load_season(data, validate=False)
         self.assertEqual(len(season.gamedays), 2)
         self.assertEqual(len(season.gamedays[0].games), 1)
-        self.assertGame(season.gamedays[0].games[0], 'A', 1, 'B', 2)
+        self.assertGame(season.gamedays[0].games[0], "A", 1, "B", 2)
         self.assertEqual(len(season.gamedays[1].games), 1)
-        self.assertGame(season.gamedays[1].games[0], 'B', 1, 'A', 1)
+        self.assertGame(season.gamedays[1].games[0], "B", 1, "A", 1)
 
     def test_parse_no_scores(self):
         data = [
-            'day1,,,',
-            'A,,B,',
-            'C,,D,',
-            'E,,F,',
+            "day1,,,",
+            "A,,B,",
+            "C,,D,",
+            "E,,F,",
         ]
         season = load_season(data, validate=False)
         self.assertEqual(len(season.gamedays), 1)
@@ -73,9 +73,9 @@ class TestParsing(unittest.TestCase):
 
     def test_validate(self):
         data = [
-            'day1,,,',
-            'A,1,B,1',
-            'day2,,,',
-            'B,2,A,1',
+            "day1,,,",
+            "A,1,B,1",
+            "day2,,,",
+            "B,2,A,1",
         ]
         season = load_season(data)

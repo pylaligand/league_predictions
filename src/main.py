@@ -24,7 +24,8 @@ class Stats(object):
         self._count = self._count + 1
         for key in Stats._KEYS:
             self._accumulators.setdefault(key, []).append(
-                self._extract(ranked_teams, key))
+                self._extract(ranked_teams, key)
+            )
 
     def _extract(self, ranked_teams, key):
         if key == Stats._KEY_SECOND_POINTS:
@@ -33,12 +34,12 @@ class Stats(object):
             if not self._team:
                 return 0
             return 1 + next(
-                i for i, t in enumerate(ranked_teams) if t.name == self._team)
+                i for i, t in enumerate(ranked_teams) if t.name == self._team
+            )
         elif key == Stats._KEY_TARGET_POINTS:
             if not self._team:
                 return 0
-            return 1 + next(t.points
-                            for t in ranked_teams if t.name == self._team)
+            return 1 + next(t.points for t in ranked_teams if t.name == self._team)
 
     def _compute(self, key):
         values = self._accumulators[key]
@@ -55,7 +56,7 @@ class Stats(object):
 
 
 def _load_season(file, validate=True):
-    with open(file, 'r') as input_file:
+    with open(file, "r") as input_file:
         lines = [l.strip() for l in input_file.readlines()]
     return load_season(lines, validate=validate)
 
@@ -71,10 +72,10 @@ def _fix_season(season, predictions):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--season', required=True)
-    parser.add_argument('--predictions')
-    parser.add_argument('--iterations', type=int, default=10000)
-    parser.add_argument('--team')
+    parser.add_argument("--season", required=True)
+    parser.add_argument("--predictions")
+    parser.add_argument("--iterations", type=int, default=10000)
+    parser.add_argument("--team")
     args = parser.parse_args()
 
     season = _load_season(args.season)
@@ -89,18 +90,16 @@ def main():
         engine = EloEngine(start=1000, k=20, min=100)
         simulator = GameSimulator(season, engine)
         simulator.simulate()
-        ranked_teams = sorted(simulator.teams(),
-                              key=lambda t: t.points,
-                              reverse=True)
+        ranked_teams = sorted(simulator.teams(), key=lambda t: t.points, reverse=True)
         stats.ingest(ranked_teams)
 
     def _print(stat, value):
-        print('{:20s} {:.2f}'.format(stat, value))
+        print("{:20s} {:.2f}".format(stat, value))
 
-    _print('Second place points', stats.second_rank_points())
+    _print("Second place points", stats.second_rank_points())
     if args.team:
-        _print('Team rank', stats.team_rank())
-        _print('Team points', stats.team_points())
+        _print("Team rank", stats.team_rank())
+        _print("Team points", stats.team_points())
 
 
 if __name__ == "__main__":

@@ -34,10 +34,14 @@ class Game(object):
 
     def __str__(self):
         if self.played():
-            return '%s(%d) v %s(%d)' % (self.team_1, self.score_1, self.team_2,
-                                        self.score_2)
+            return "%s(%d) v %s(%d)" % (
+                self.team_1,
+                self.score_1,
+                self.team_2,
+                self.score_2,
+            )
         else:
-            return '%s v %s' % (self.team_1, self.team_2)
+            return "%s v %s" % (self.team_1, self.team_2)
 
     def __repr__(self):
         return self.__str__()
@@ -63,7 +67,7 @@ class Season(object):
         return self.gamedays
 
     def __str__(self):
-        return 'Season{%d}' % len(self.gamedays)
+        return "Season{%d}" % len(self.gamedays)
 
     def add_gameday(self, gameday):
         self.gamedays.append(gameday)

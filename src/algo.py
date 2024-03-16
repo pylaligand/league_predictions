@@ -5,7 +5,7 @@ class RatedTeam(object):
         self.points = 0
 
     def __str__(self):
-        return '%s(%d, %d)' % (self.name, self.rating, self.points)
+        return "%s(%d, %d)" % (self.name, self.rating, self.points)
 
     def __repr__(self):
         return self.__str__()
@@ -13,10 +13,10 @@ class RatedTeam(object):
 
 class RatingEngine(object):
     def initialize(self, teams):
-        raise Exception('Not implemented!')
+        raise Exception("Not implemented!")
 
     def update(self, team_1, team_2, game):
-        raise Exception('Not implemented!')
+        raise Exception("Not implemented!")
 
 
 class DumbRatingEngine(RatingEngine):
@@ -58,8 +58,9 @@ class GameSimulator(object):
 
     def _simulate_gameday(self, gameday):
         for game in gameday.games:
-            self._engine.update(self._teams[game.team_1],
-                                self._teams[game.team_2], game)
+            self._engine.update(
+                self._teams[game.team_1], self._teams[game.team_2], game
+            )
 
     def get_team(self, name):
         return self._teams[name]

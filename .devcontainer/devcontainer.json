@@ -2,6 +2,7 @@
     "name": "Container for leahue predictions",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
     "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:latest": {},
         "ghcr.io/devcontainers/features/python:latest": {}
     },
     "customizations": {
@@ -22,5 +23,6 @@
             "isort.args": ["--profile", "black"]
           }
         }
-      }
+      },
+      "postCreateCommand": "/workspaces/league_predictions/.devcontainer/codespace_init.sh"
 }

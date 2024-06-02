@@ -5,7 +5,7 @@ from elo import EloEngine
 from parsing import load_season
 
 
-class TestElgo(unittest.TestCase):
+class TestElo(unittest.TestCase):
     def test_one_gameday(self):
         data = [
             "day1,,,",

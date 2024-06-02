@@ -20,6 +20,7 @@ make test
 - [Main dashboard](https://console.cloud.google.com/home/dashboard?project=promoracle)
 - [Artifact Registry repository](https://console.cloud.google.com/artifacts/docker/promoracle/europe-west9/promoracle?project=promoracle)
 - [Cloud Run service](https://console.cloud.google.com/run/detail/europe-west9/promoracle/metrics?project=promoracle)
+- [Cloud Storage bucket](https://console.cloud.google.com/storage/browser/promoracle;tab=objects?project=promoracle)]
 
 ### Commands
 

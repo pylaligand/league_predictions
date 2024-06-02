@@ -1,5 +1,5 @@
 {
-    "name": "Container for leahue predictions",
+    "name": "Container for league predictions",
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:latest": {},

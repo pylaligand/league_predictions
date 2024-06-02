@@ -8,7 +8,7 @@ app:
 
 .PHONY: test
 test:
-	python -m unittest discover src/
+	python -m unittest discover modules/
 
 .PHONY: docker-build
 docker-build:

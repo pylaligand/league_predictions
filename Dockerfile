@@ -1,3 +1,5 @@
+#syntax=docker/dockerfile:1.6
+
 FROM python:3.10-slim AS base
 
 RUN apt-get update && apt-get install -y \
